@@ -28,7 +28,7 @@ From this assignment:
 
 In previous assignments for syntax analysis and sematic analysis, you worked with `clang`, the LLVM frontend for C C++ and Objective-C.
 
-The core of LLVM is the [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR), a low-level programming language similar to assembly, which abstract away most details of the programming language and the target. When compiling a programming language under LLVM, it will first convert the specific programming language into IR, then perform analysis / optimizations against the IR, and finally generate the target binary code (e.g. x86, ARM, ...).
+The core of LLVM is the [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR), a low-level programming language similar to assembly, which abstract away most details of the high-level programming language and the target. When compiling a programming language under LLVM, it will first convert the specific programming language into IR, then perform analysis / optimizations against the IR, and finally generate the target binary code (e.g. x86, ARM, ...).
 
 Optimizations are implemented as Passes that traverse some portion of a program to either collect information or transform the program.
 
