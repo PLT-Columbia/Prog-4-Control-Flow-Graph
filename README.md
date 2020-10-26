@@ -91,7 +91,7 @@ You can do many kinds of analysis / transformations against a CFG. For example, 
 
 In this part, you need to identify all the "**key blocks**" in a function. We define "**key block**" as following: a **key block** is the basic block of a function, such that every path from the entry of the function to the exit of the function **MUST** go through this basic block.
 
-Remember that you may assume that exactly one basic block will have `ret` as its [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions) in each function, and `ret` is considered to be the exit of one function.
+Remember that you may assume that exactly **one** basic block will have `ret` as its [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions) in each function, and `ret` is considered to be the exit of a function.
 
 1. Note that the entry basic block, and the basic block with `ret` instruction are also **key blocks** by definition.
 
