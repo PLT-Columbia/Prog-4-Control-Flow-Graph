@@ -45,7 +45,7 @@ clang -O0 -emit-llvm -c bubble.c
 llvm-dis bubble.bc
 ```
 
-Then `bubble.bc` contains the IR in binary format, `bubble.ll` contains the IR in human-readable format.
+You will get `bubble.bc`, which contains the IR in binary format, and `bubble.ll`, which contains the IR in human-readable format.
 
 2. Generate the CFG of `bubble.bc`:
 ```
