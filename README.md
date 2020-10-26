@@ -83,6 +83,11 @@ In this part, you need to construct the CFG of a function by analyzing the basic
 
 Instead of generating a dot file yourself, please use the `OFile` class to output all the edges you found. The results will be saved to `<function_name>.txt`.
 
+You can run the pass you wrote this way:
+```
+opt -load $LLVM_HOME/build/lib/LLVMcfg.so -hw4-cfg < bubble.bc
+```
+
 Compare the edges you found with `bubblesort.pdf` for sanity check.
 
 ### Part 2: Analyze CFG
@@ -94,6 +99,11 @@ In this part, you need to identify all the "*key blocks*" in a function. We defi
 Remember that you may assume that exactly **one** basic block will have `ret` as its [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions) in each function, and `ret` is considered to be the exit of a function.
 
 Please use the `OFile` class to output the *key blocks* you found.
+
+You can run the pass you wrote this way:
+```
+opt -load $LLVM_HOME/build/lib/LLVMcfg.so -hw4-cfg < bubble.bc
+```
 
 1. Note that the entry basic block, and the basic block with `ret` instruction are also *key blocks* by definition.
 
