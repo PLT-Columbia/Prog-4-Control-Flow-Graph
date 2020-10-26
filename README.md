@@ -79,7 +79,7 @@ make
 
 ### Part 1: Generate CFG
 
-In this part, you need to construct the CFG of a function by analyzing the basic blocks.
+In this part, you need to construct the CFG of a function by analyzing the basic blocks. We provide skeleton code in `src/hw4-cfg.cpp`.
 
 Instead of generating a dot file yourself, please use the `OFile` class to output all the edges you found. The results will be saved to `<function_name>.txt`.
 
@@ -110,3 +110,6 @@ opt -load $LLVM_HOME/build/lib/LLVMcfg.so -hw4-cfg < bubble.bc
 3. Hint: instead of removing / re-inserting a basic block directly, you can change the [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions) of the basic block that you want to delete, then change it back to the original instruction to re-insert the basic block.
 
 4. You need to figure out which APIs you should use for this task. It's also OK if you prefer to construct a graph structure yourself and analyze it manually.
+
+## Submission
+Only one file should be submitted: `src/hw4-cfg.cpp`. Other files will be ignored when grading.
