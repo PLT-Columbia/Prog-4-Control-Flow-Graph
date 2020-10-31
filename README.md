@@ -9,7 +9,7 @@ Instructor: Prof. Baishakhi Ray
 
 
 ## Logistics
-* **Announcement Date:** **(TBD)**Thursday, October 1, 2020
+* **Announcement Date:** Thursday, October 31, 2020
 * **Due Date:** **(TBD)**Wednesday, October 14, 2020 by 11:59 PM. **No extensions!**
 * **Total Points:** **(TBD)**100
 
