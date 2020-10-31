@@ -23,7 +23,7 @@ struct _TeeHelper {
 template<typename Tuple>
 struct _TeeHelper<Tuple, 0> {
     template<typename T>
-    static void output(Tuple &&t, T &&arg) {}
+    static void output(Tuple &&t, T &&arg) {(void)t; (void)arg;}
 };
 
 template<typename... Streams>
