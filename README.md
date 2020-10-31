@@ -79,7 +79,7 @@ make
 
 ### Part 1: Generate CFG
 
-In this part, you need to construct the CFG of a function by analyzing the basic blocks. We provide skeleton code in `src/hw4-cfg.cpp`.
+In this part, you need to write a function pass and construct the CFG of a function by analyzing the basic blocks. We provide skeleton code in `src/hw4-cfg.cpp`.
 
 Instead of generating a dot file yourself, please use the `OFile` class to output all the edges you found. The results will be saved to `<function_name>.txt`.
 
