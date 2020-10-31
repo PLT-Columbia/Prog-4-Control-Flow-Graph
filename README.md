@@ -98,7 +98,7 @@ In this part, you need to identify all the "*key blocks*" in a function. We defi
 
 Remember that you may assume that exactly **one** basic block will have `ret` as its [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions) in each function, and `ret` is considered to be the exit of a function.
 
-Please use the `OFile` class to output the *key blocks* you found.
+Please use the `OFile` class to output the *key blocks* you found. The results will be saved to `<function_name>.txt`.
 
 You can run the pass you wrote this way:
 ```
