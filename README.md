@@ -77,7 +77,7 @@ make
 
 6. The nodes of CFG are called [basic block](https://en.wikipedia.org/wiki/Basic_block). For the following parts of the assignment, you may assume that for each function, exactly one basic block will have `ret` as its [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions), with other basic blocks having `br` as their [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions). You may also assume that `br` will have *at most* **2** successors.
 
-### Part 1: Generate CFG
+### Part 1: Generate CFG (50 points)
 
 In this part, you need to write a [function pass](https://llvm.org/doxygen/classllvm_1_1FunctionPass.html) and construct the CFG of a function by analyzing the basic blocks. We provide skeleton code in `src/hw4-cfg.cpp`.
 
@@ -90,7 +90,7 @@ opt -load $LLVM_HOME/build/lib/LLVMcfg.so -hw4-cfg < bubble.bc
 
 Compare the edges you found with `bubblesort.pdf` for sanity check.
 
-### Part 2: Analyze CFG
+### Part 2: Analyze CFG (50 points)
 
 You can do many kinds of analysis / transformations on a CFG. For example, dead block elimination, loop detection / simplification, ...
 
