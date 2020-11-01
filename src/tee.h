@@ -31,7 +31,8 @@ class Tee {
     typedef std::tuple<Streams...> Tuple;
     Tuple s;
 public:
-    Tee(Streams&&... streams): s(std::forward_as_tuple(streams...)) {}
+    Tee(Streams&&... streams): 
+        s(std::forward_as_tuple(std::forward<Streams>(streams)...)) {}
 
     template<typename T>
     Tee<Streams...> &operator<<(T &&arg) {
