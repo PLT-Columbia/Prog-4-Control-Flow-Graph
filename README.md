@@ -14,7 +14,8 @@ Instructor: Prof. Baishakhi Ray
 * **Total Points:** 100
 
 ## Grading Breakdown
-* **(TBD)**
+* **Part 1** - (Generate CFG) 50
+* **Part 2** - (Analyze CFG) 50
 
 ## Assignment Objectives
 
