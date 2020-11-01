@@ -28,15 +28,15 @@ From this assignment:
 
 In previous assignments for syntax analysis and sematic analysis, you worked with `clang`, the LLVM frontend for C C++ and Objective-C.
 
-The core of LLVM is the [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR), a low-level programming language similar to assembly, which abstract away most details of the high-level programming language and the target. When compiling a programming language under LLVM, it will first convert the specific programming language into IR, then perform analysis / optimizations against the IR, and finally generate the target binary code (e.g. x86, ARM, ...).
+The core of LLVM is the [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR), a low-level programming language similar to assembly, which abstract away most details of the high-level programming language and also the target machine specific nuances. When compiling a programming language under LLVM, it will first convert the specific programming language into IR, then perform analysis / optimizations against the IR, and finally generate the target binary code (e.g. x86, ARM, ...).
 
 Optimizations are implemented as Passes that traverse some portion of a program to either collect information or transform the program. For more details about LLVM Pass, see [Writing an LLVM Pass](https://llvm.org/docs/WritingAnLLVMPass.html).
 
-We will work with IR and LLVM pass for this assignment.
+We will work with IR and LLVM pass for this assignment. More specifically, we will learn to generate how to create [Control Flow Graph](https://en.wikipedia.org/wiki/Control-flow_graph)s(CFG) from LLVM IR, and how to do lightweight analysis on the CFG. Analysis of Control Flow Graphs is an essential part of compiler for [progam optimization](https://en.wikipedia.org/wiki/Program_optimization). We will learn more about CFG and its other applications in the class.
 
 ### Get started
 
-1. Convert `bubble.c` to IR:
+1. Convert `bubble.c` (from the `examples` directory) to IR:
 ```
 LLVM_HOME="<the absolute path to llvm-pproject>"
 export PATH="$LLVM_HOME/build/bin:$PATH"
@@ -44,8 +44,7 @@ export PATH="$LLVM_HOME/build/bin:$PATH"
 clang -O0 -emit-llvm -c bubble.c
 llvm-dis bubble.bc
 ```
-
-You will get `bubble.bc`, which contains the IR in binary format, and `bubble.ll`, which contains the IR in human-readable format.
+You will get `bubble.bc`, which contains the IR in binary format, and `bubble.ll`, which contains the IR in human-readable format. Go ahead, read, and try to understand the structure of `bubble.ll` file. 
 
 2. Generate the CFG of `bubble.bc`:
 ```
@@ -60,7 +59,7 @@ dot -Tpdf .bubbleSort.dot -o bubblesort.pdf
 cd ..
 ```
 
-Then you can view the CFG of `bubbleSort()` in `bubble.c`. Obviously you can view the CFG of other functions with `dot` command, e.g. `dot -Tpdf .printArray.dot -o printArray.pdf`.
+Then you can view the CFG of the function `bubbleSort()` in `bubble.c`. Obviously you can view the CFG of other functions with `dot` command, e.g. `dot -Tpdf .printArray.dot -o printArray.pdf`.
 
 3. Create a new folder `clang-hw4` in `llvm-project/llvm/lib/Transforms` for this assignment, and copy the files:
 ```
@@ -75,11 +74,11 @@ cd "$LLVM_HOME/build"
 make
 ```
 
-6. For the following parts of the assignment, you may assume that for each function, exactly one basic block will have `ret` as its [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions), with other basic blocks having `br` as their [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions). You may also assume that `br` will have *at most* **2** successors.
+6. The nodes of CFG are called [basic block](https://en.wikipedia.org/wiki/Basic_block). For the following parts of the assignment, you may assume that for each function, exactly one basic block will have `ret` as its [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions), with other basic blocks having `br` as their [terminator instruction](https://llvm.org/docs/LangRef.html#terminator-instructions). You may also assume that `br` will have *at most* **2** successors.
 
 ### Part 1: Generate CFG
 
-In this part, you need to write a function pass and construct the CFG of a function by analyzing the basic blocks. We provide skeleton code in `src/hw4-cfg.cpp`.
+In this part, you need to write a [function pass](https://llvm.org/doxygen/classllvm_1_1FunctionPass.html) and construct the CFG of a function by analyzing the basic blocks. We provide skeleton code in `src/hw4-cfg.cpp`.
 
 Instead of generating a dot file yourself, please use the `OFile` class to output all the edges you found. The results will be saved to `<function_name>.txt`.
 
@@ -92,7 +91,7 @@ Compare the edges you found with `bubblesort.pdf` for sanity check.
 
 ### Part 2: Analyze CFG
 
-You can do many kinds of analysis / transformations against a CFG. For example, dead block elimination, loop detection / simplification, ...
+You can do many kinds of analysis / transformations on a CFG. For example, dead block elimination, loop detection / simplification, ...
 
 In this part, you need to identify all the "*key blocks*" in a function. We define "*key block*" as following: a *key block* is the basic block of a function, such that every path from the entry of the function to the exit of the function **MUST** go through this basic block.
 
